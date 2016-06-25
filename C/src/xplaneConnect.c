@@ -1,4 +1,4 @@
-//Copyright (c) 2013-2015 United States Government as represented by the Administrator of the
+//Copyright (c) 2013-2016 United States Government as represented by the Administrator of the
 //National Aeronautics and Space Administration. All Rights Reserved.
 //
 //DISCLAIMERS
@@ -52,6 +52,7 @@ int sendUDP(XPCSocket sock, char buffer[], int len);
 int readUDP(XPCSocket sock, char buffer[], int len);
 int sendDREFRequest(XPCSocket sock, const char* drefs[], unsigned char count);
 int getDREFResponse(XPCSocket sock, float* values[], unsigned char count, int sizes[]);
+
 void printError(char *functionName, char *format, ...)
 {
 	va_list args;
@@ -328,7 +329,7 @@ int readDATA(XPCSocket sock, float data[][9], int rows)
 	// shouldn't be trying to read nearly this much data at once anyway.
 	if (rows > 134)
 	{
-		printError("sendDATA", "Too many rows.");
+		printError("readDATA", "Too many rows.");
 		// Read as much as we can anyway
 		rows = 134;
 	}
